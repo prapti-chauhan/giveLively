@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "559857147132",
+    "project_id": "givelivly",
+    "storage_bucket": "givelivly.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:559857147132:android:bea55a5ba46aac6e70cb79",
+        "android_client_info": {
+          "package_name": "com.example.givelivly_beta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "559857147132-umhkv8t8p7lh7ov1loac7vhlvafphuo2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQUXwMVew1UZR3CmkyL5uE11DQS50jviY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "559857147132-umhkv8t8p7lh7ov1loac7vhlvafphuo2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

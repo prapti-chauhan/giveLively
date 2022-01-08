@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "559857147132",
-    "project_id": "givelivly",
-    "storage_bucket": "givelivly.appspot.com"
+    "project_number": "692239572956",
+    "project_id": "give-lively-3878a",
+    "storage_bucket": "give-lively-3878a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:559857147132:android:bea55a5ba46aac6e70cb79",
+        "mobilesdk_app_id": "1:692239572956:android:fbb8495e45099f4937b919",
         "android_client_info": {
           "package_name": "com.example.givelivly_beta"
         }
       },
       "oauth_client": [
         {
-          "client_id": "559857147132-umhkv8t8p7lh7ov1loac7vhlvafphuo2.apps.googleusercontent.com",
+          "client_id": "692239572956-fft3tihne5ne43tq70b8vjguj4ttglhg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCQUXwMVew1UZR3CmkyL5uE11DQS50jviY"
+          "current_key": "AIzaSyAmBhkpook4cAw0pHKmS01pl-HVdahk5BA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "559857147132-umhkv8t8p7lh7ov1loac7vhlvafphuo2.apps.googleusercontent.com",
+              "client_id": "692239572956-fft3tihne5ne43tq70b8vjguj4ttglhg.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

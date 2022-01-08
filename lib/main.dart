@@ -1,9 +1,27 @@
 
 
+import 'package:firebase_core/firebase_core.dart';
+import 'package:givelivly_beta/Screens/signin_signup/login/login_provider.dart';
+import 'package:givelivly_beta/Screens/signin_signup/register/register_provider.dart';
 import 'package:givelivly_beta/config/packages.dart';
 
 
-void main() => runApp(const GiveLivly());
+void main() {
+  Provider.debugCheckInvalidValueType = null;
+
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp();
+  GetStorage.init();
+
+  runApp(MultiProvider(providers: [
+    Provider<RegisterProvider>(create: (_) => RegisterProvider()),
+    Provider<LoginProvider>(create: (_) => LoginProvider()),
+
+
+  ],
+  child: const MaterialApp(home: GiveLivly(),
+  )));
+}
 
 class GiveLivly extends StatelessWidget {
   const GiveLivly({Key? key}) : super(key: key);

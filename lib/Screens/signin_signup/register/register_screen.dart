@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
+import 'package:givelivly_beta/Screens/signin_signup/register/register_provider.dart';
 import 'package:givelivly_beta/config/packages.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -69,14 +70,23 @@ class RegisterScreen extends StatelessWidget {
                 )),
                 SingleChildScrollView(
                   child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 0, horizontal: 30),
-                    child: Flexible(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 0, horizontal: 30),
+                    child: Form(
+                      key: context.read<RegisterProvider>().formStateKey,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           TextFormField(
+                            controller: context
+                                .read<RegisterProvider>()
+                                .emailController,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "This field can't be empty";
+                              }
+                            },
                             decoration: InputDecoration(
                               labelText: "Email",
                               labelStyle: TextStyle(
@@ -100,7 +110,15 @@ class RegisterScreen extends StatelessWidget {
                             ),
                           ),
                           TextFormField(
+                            controller: context
+                                .read<RegisterProvider>()
+                                .passwordController,
                             obscureText: true,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "This field can't be empty";
+                              }
+                            },
                             decoration: InputDecoration(
                               labelText: "Password",
                               labelStyle: TextStyle(
@@ -133,13 +151,9 @@ class RegisterScreen extends StatelessWidget {
                                   ),
                                   InkWell(
                                     onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const HomeScreen(),
-                                        ),
-                                      );
+                                      context
+                                          .read<RegisterProvider>()
+                                          .onRegister(context);
                                     },
                                     child: Row(
                                       crossAxisAlignment:
@@ -150,7 +164,8 @@ class RegisterScreen extends StatelessWidget {
                                           style: TextStyle(
                                             fontSize: 24,
                                             fontWeight: FontWeight.bold,
-                                            color: ColorsDesign.darkBluishColor,
+                                            color:
+                                                ColorsDesign.darkBluishColor,
                                           ),
                                         ),
                                         SizedBox(
@@ -164,8 +179,8 @@ class RegisterScreen extends StatelessWidget {
                                             height: 40,
                                             width: 40,
                                             decoration: BoxDecoration(
-                                              color:
-                                                  ColorsDesign.darkBluishColor,
+                                              color: ColorsDesign
+                                                  .darkBluishColor,
                                               borderRadius:
                                                   BorderRadius.circular(50),
                                             ),
@@ -176,21 +191,6 @@ class RegisterScreen extends StatelessWidget {
                                             ),
                                           ),
                                         ),
-                                        SizedBox(
-                                          width: size.width * 0.03,
-                                        ),
-                                         Container(
-                                              height: 40,
-                                              width: 40,
-                                              decoration:  const BoxDecoration(
-                                                color: Colors.red,
-                                                shape: BoxShape.circle,
-                                               // image: DecorationImage(image: ImageProvider )
-                                              ),
-                                              child: Image.asset(
-                                                'assets/Drawables/google_g.png',
-                                                // height: 50,
-                                              )),
                                       ],
                                     ),
                                   ),
@@ -236,7 +236,7 @@ class RegisterScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             )
           ])),

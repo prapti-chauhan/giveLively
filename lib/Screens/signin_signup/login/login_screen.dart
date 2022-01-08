@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:givelivly_beta/Screens/donations/donate_screen.dart';
+import 'package:givelivly_beta/Screens/signin_signup/login/login_provider.dart';
 import 'package:givelivly_beta/config/packages.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -85,6 +86,12 @@ class LoginScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TextFormField(
+                        controller: context.read<LoginProvider>().loginEmailController,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "This field can't be empty";
+                          }
+                        },
                         decoration: InputDecoration(
                           labelText: "Email",
                           labelStyle: TextStyle(
@@ -108,6 +115,12 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                       TextFormField(
+                        controller: context.read<LoginProvider>().loginPasswordController,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "This field can't be empty";
+                          }
+                        },
                         obscureText: true,
                         decoration: InputDecoration(
                           labelText: "Password",

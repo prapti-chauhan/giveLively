@@ -9,13 +9,41 @@ class FireStoreMethods {
         .set(userInfoMap);
   }
 
+  Future addDonorInfoToDB(Map<String, dynamic> donorInfoMap) async {
+    return FirebaseFirestore.instance
+        .collection("donor").doc()
+        .set(donorInfoMap);
+  }
+
+/*
+  Future<Stream<QuerySnapshot>> getDonor(chatRoomId) async {
+    return FirebaseFirestore.instance
+        .collection("chatrooms")
+        .doc(chatRoomId)
+        .collection("chats")
+        .orderBy("ts", descending: true)
+        .snapshots();
+  }
+*/
+
+  Future<Stream<QuerySnapshot>> getDonorInfo() async {
+    return FirebaseFirestore.instance
+        .collection("donor")
+        .snapshots();
+  }
+
+/*
+  Future addDonation(){
+    return FirebaseFirestore.instance.collection('donations').doc().set();
+  }
+*/
+
   /*Future getUid() async {
     return FirebaseFirestore.instance
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .get();
-  }
-
+  }\
 
 *//*
   Future newMessage() async{

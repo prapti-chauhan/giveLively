@@ -19,7 +19,7 @@ class LoginProvider extends ChangeNotifier {
         // print('${user.user!.email}');
         print('--${Prefs().getUserEmail}--');
         Prefs().saveUserId = user.user!.uid;
-        Prefs().saveUserName = user.user!.email!.replaceAll("@gmail.com", "");
+        Prefs().saveDonorName = user.user!.email!.replaceAll("@gmail.com", "");
 
         Navigator.push(
           context,

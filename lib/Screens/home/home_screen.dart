@@ -1,4 +1,4 @@
-import 'package:givelivly_beta/Screens/donations/donate_screen.dart';
+import 'package:givelivly_beta/Screens/donations/donations/donate_screen.dart';
 import 'package:givelivly_beta/Screens/notification/notification.dart';
 import 'package:givelivly_beta/config/packages.dart';
 
@@ -135,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 const Positioned(
-                  bottom: 320,
+                  bottom: 310,
                   left: 250,
                   child: Text(
                     "Happy",

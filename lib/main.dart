@@ -1,10 +1,9 @@
-
-
 import 'package:firebase_core/firebase_core.dart';
+import 'package:givelivly_beta/Screens/donations/add_donations/add_donation_provider.dart';
+import 'package:givelivly_beta/Screens/donations/donations/donate_provider.dart';
 import 'package:givelivly_beta/Screens/signin_signup/login/login_provider.dart';
 import 'package:givelivly_beta/Screens/signin_signup/register/register_provider.dart';
 import 'package:givelivly_beta/config/packages.dart';
-
 
 void main() {
   Provider.debugCheckInvalidValueType = null;
@@ -13,14 +12,17 @@ void main() {
   Firebase.initializeApp();
   GetStorage.init();
 
-  runApp(MultiProvider(providers: [
-    Provider<RegisterProvider>(create: (_) => RegisterProvider()),
-    Provider<LoginProvider>(create: (_) => LoginProvider()),
+  runApp(MultiProvider(
+      providers: [
+        Provider<RegisterProvider>(create: (_) => RegisterProvider()),
+        Provider<LoginProvider>(create: (_) => LoginProvider()),
+        Provider<AddDonationProvider>(create: (_) => AddDonationProvider()),
+        Provider<DonateProvider>(create: (_) => DonateProvider()),
 
-
-  ],
-  child: const MaterialApp(home: GiveLivly(),
-  )));
+      ],
+      child: const MaterialApp(
+        home: GiveLivly(),
+      )));
 }
 
 class GiveLivly extends StatelessWidget {

@@ -1,13 +1,15 @@
 import 'package:givelivly_beta/config/packages.dart';
 
 class DonationRequestScreen extends StatefulWidget {
-  const DonationRequestScreen({Key? key}) : super(key: key);
+   DonationRequestScreen({Key? key}) : super(key: key);
+
+  List requests = [];
 
   @override
   _DonationRequestScreenState createState() => _DonationRequestScreenState();
 }
 
-var scafoldKey = GlobalKey<ScaffoldState>();
+var scaffoldKey = GlobalKey<ScaffoldState>();
 
 class _DonationRequestScreenState extends State<DonationRequestScreen> {
   @override
@@ -15,7 +17,6 @@ class _DonationRequestScreenState extends State<DonationRequestScreen> {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        key: scafoldKey,
         bottomNavigationBar: BottomAppBar(
           child: ElevatedButton(
             style: ButtonStyle(
@@ -30,10 +31,10 @@ class _DonationRequestScreenState extends State<DonationRequestScreen> {
                 ),
               ),
             ),
-            child: SizedBox(
-              height: size.height * 0.06,
-              width: size.width,
-              child: const Center(
+            child: const SizedBox(
+              height: 70,
+              width: 300,
+              child: Center(
                 child: Text(
                   "Donations Receive Requests",
                   style:
@@ -60,7 +61,7 @@ class _DonationRequestScreenState extends State<DonationRequestScreen> {
           leading: IconButton(
             icon: SvgPicture.asset('assets/Drawables/Toggle Button.svg'),
             onPressed: () {
-              scafoldKey.currentState!.openDrawer();
+              scaffoldKey.currentState!.openDrawer();
             },
           ),
           backgroundColor: ColorsDesign.lightColor,
@@ -73,11 +74,12 @@ class _DonationRequestScreenState extends State<DonationRequestScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: size.height * 0.65,
+                // height: size.height * 0.65,
                 child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
                   child: Column(
                     children: [
+                      //donation post
                       Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Card(
@@ -205,6 +207,10 @@ class _DonationRequestScreenState extends State<DonationRequestScreen> {
                           ),
                         ),
                       ),
+                      //volunteers
+                      ListView.builder(
+                        itemCount: ,
+                          itemBuilder: (context,index){}),
                       Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Card(

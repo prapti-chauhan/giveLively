@@ -22,6 +22,7 @@ void main() {
       ],
       child: const MaterialApp(
         home: GiveLivly(),
+        debugShowCheckedModeBanner: false,
       )));
 }
 
@@ -33,6 +34,7 @@ class GiveLivly extends StatelessWidget {
     return MaterialApp(
       title: 'GiveLivly',
       debugShowCheckedModeBanner: false,
+
       initialRoute: Routes.welcomeRoute,
       theme: ThemeData(
           textTheme: GoogleFonts.amiriTextTheme(

@@ -1,7 +1,6 @@
-
 import 'package:givelivly_beta/Screens/donations/add_donations/add_donation_screen.dart';
 import 'package:givelivly_beta/Screens/donations/donations/donate_provider.dart';
-import 'package:givelivly_beta/Screens/donations/donation_request_screen.dart';
+import 'package:givelivly_beta/Screens/donations/donation_requests/donation_request_screen.dart';
 
 import 'package:givelivly_beta/config/packages.dart';
 
@@ -18,6 +17,7 @@ class _DonateScreenState extends State<DonateScreen> {
   @override
   void initState() {
     context.read<DonateProvider>().init();
+    setState(() {});
     super.initState();
   }
 
@@ -45,15 +45,14 @@ class _DonateScreenState extends State<DonateScreen> {
               width: 300,
               child: Text(
                 "Donations Receive Requests",
-                style:
-                    TextStyle(fontSize: 24, color: ColorsDesign.lightColor),
+                style: TextStyle(fontSize: 24, color: ColorsDesign.lightColor),
               ),
             ),
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const DonationRequestScreen(),
+                  builder: (context) =>  DonationRequestScreen(),
                 ),
               );
             },
@@ -87,7 +86,7 @@ class _DonateScreenState extends State<DonateScreen> {
         drawer: const NewCustomDrawer(),
         body: Container(
           color: ColorsDesign.lightColor,
-          height: 500,
+          // height: 1000,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -104,8 +103,7 @@ class _DonateScreenState extends State<DonateScreen> {
                       const Text(
                         "Add Donations",
                         style: TextStyle(
-                            color: ColorsDesign.darkBluishColor,
-                            fontSize: 24),
+                            color: ColorsDesign.darkBluishColor, fontSize: 24),
                       ),
                       const SizedBox(
                         width: 10,
@@ -124,7 +122,7 @@ class _DonateScreenState extends State<DonateScreen> {
                     ],
                   ),
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (context) => const AddDonateScreen(),
@@ -147,43 +145,46 @@ class _DonateScreenState extends State<DonateScreen> {
               const SizedBox(
                 height: 20,
               ),
-              Flexible(
-                child: StreamBuilder(
-                  stream: context.read<DonateProvider>().donation,
-                  builder: (BuildContext context,
-                      AsyncSnapshot<dynamic> snapshot) {
-                    if(context.read<DonateProvider>().donation == null){
-                      return const Center(
-                        child: Text('No Donations Found'),
-                      );
-                    }
-                    QuerySnapshot<Map<String, dynamic>> _data;
-                    print('---${snapshot.data}---');
-                    if (snapshot.hasData) {
-                      _data = snapshot.data
-                          as QuerySnapshot<Map<String, dynamic>>;
-                      return ListView.builder(
+              StreamBuilder(
+                stream: context.read<DonateProvider>().donation,
+                builder:
+                    (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                  if (context.read<DonateProvider>().donation == null) {
+                    return const Center(
+                      child: Text('No Donations Found'),
+                    );
+                  }
+                  QuerySnapshot<Map<String, dynamic>> _data;
+                  print('---${snapshot.data}---');
+                  if (snapshot.hasData) {
+                    _data =
+                        snapshot.data as QuerySnapshot<Map<String, dynamic>>;
+                   // setState(() {});
+                    print("--------${_data.docs.length}");
+                    return Expanded(
+                      child: ListView.builder(
                           itemCount: _data.docs.length,
                           itemBuilder: (context, index) {
+                            var _ds = _data.docs[index].data();
+
                             return CustomDonationWidget(
                                 foodItem: 'Daal Khichdi',
-                                donorName: context
-                                    .read<DonateProvider>()
-                                    .fullName,
-                                address: context
-                                    .read<DonateProvider>()
-                                    .address,
+                                donorName:_ds['fullName'],
+                                address: _ds['address'],
                                 number: '9988776655',
                                 imageUrl: 'assets/Drawables/Biryani.jpg',
-                                request: '');
-                          });
-                    } else {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                  },
-                ),
+                                request: context.read<DonateProvider>().isRequested
+                                    ? 'Request'
+                                    : 'Requested');
+
+                          }),
+                    );
+                  } else {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                },
               )
             ],
           ),

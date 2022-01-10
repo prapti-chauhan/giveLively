@@ -2,14 +2,11 @@ import 'package:givelivly_beta/config/packages.dart';
 
 class DonateProvider extends ChangeNotifier {
   Stream? donation;
-  List donations = [];
   var scaffoldKey = GlobalKey<ScaffoldState>();
+  bool isRequested = true;
 
-  String fullName = '', address = '';
 
   init() {
-    fullName = Prefs().getDonorName;
-    address = Prefs().getAddress;
 
     FireStoreMethods().getDonorInfo().then((value) {
       donation = value;

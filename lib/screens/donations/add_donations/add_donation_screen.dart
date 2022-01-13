@@ -80,17 +80,36 @@ class AddDonateScreen extends StatelessWidget {
                     padding:
                         const EdgeInsets.symmetric(vertical: 0, horizontal: 30),
                     child: Form(
-                      key: context.read<AddDonationProvider>().formStateKeyDonation,
+                      key: context
+                          .read<AddDonationProvider>()
+                          .formStateKeyDonation,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           TextFormField(
-                            controller: context.read<AddDonationProvider>().addEmailCtrl,
+                            controller: context
+                                .read<AddDonationProvider>()
+                                .addEmailCtrl,
                             decoration: InputDecoration(
-                              labelText: "Email",
+                              hintText: "Item name",
                               labelStyle: TextStyle(
-                                fontSize: 22,
+                                fontSize: 18,
+                                fontFamily: GoogleFonts.amiri().fontFamily,
+                                fontWeight: FontWeight.bold,
+                                color: ColorsDesign.darkBluishColor,
+                              ),
+
+                            ),
+                          ),
+                          TextFormField(
+                            controller: context
+                                .read<AddDonationProvider>()
+                                .addEmailCtrl,
+                            decoration: InputDecoration(
+                              hintText: "Item name",
+                              labelStyle: TextStyle(
+                                fontSize: 18,
                                 fontFamily: GoogleFonts.amiri().fontFamily,
                                 fontWeight: FontWeight.bold,
                                 color: ColorsDesign.darkBluishColor,
@@ -110,11 +129,15 @@ class AddDonateScreen extends StatelessWidget {
                             ),
                           ),
                           TextFormField(
-                            controller: context.read<AddDonationProvider>().addFullNameCtrl,
+                            controller: context
+                                .read<AddDonationProvider>()
+                                .addFullNameCtrl,
                             decoration: InputDecoration(
-                              labelText: "Full name",
+                              border: InputBorder.none,
+                              disabledBorder: InputBorder.none,
+                              hintText: "Full name",
                               labelStyle: TextStyle(
-                                fontSize: 22,
+                                fontSize: 18,
                                 fontFamily: GoogleFonts.amiri().fontFamily,
                                 fontWeight: FontWeight.bold,
                                 color: ColorsDesign.darkBluishColor,
@@ -134,11 +157,39 @@ class AddDonateScreen extends StatelessWidget {
                             ),
                           ),
                           TextFormField(
-                            controller: context.read<AddDonationProvider>().addAddressCtrl,
+                            controller: context
+                                .read<AddDonationProvider>()
+                                .addAddressCtrl,
                             decoration: InputDecoration(
-                              labelText: "Address",
+                              hintText: "Address",
                               labelStyle: TextStyle(
-                                fontSize: 22,
+                                fontSize: 18,
+                                fontFamily: GoogleFonts.amiri().fontFamily,
+                                fontWeight: FontWeight.bold,
+                                color: ColorsDesign.darkBluishColor,
+                              ),
+                              enabledBorder: const UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  width: 3.0,
+                                  color: ColorsDesign.darkBluishColor,
+                                ),
+                              ),
+                              focusedBorder: const UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  width: 3.0,
+                                  color: ColorsDesign.darkBluishColor,
+                                ),
+                              ),
+                            ),
+                          ),
+                          TextFormField(
+                            controller: context
+                                .read<AddDonationProvider>()
+                                .addAddressCtrl,
+                            decoration: InputDecoration(
+                              hintText: "Address",
+                              labelStyle: TextStyle(
+                                fontSize: 18,
                                 fontFamily: GoogleFonts.amiri().fontFamily,
                                 fontWeight: FontWeight.bold,
                                 color: ColorsDesign.darkBluishColor,
@@ -162,7 +213,9 @@ class AddDonateScreen extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              context.read<AddDonationProvider>().onAddDonation(context);
+                              context
+                                  .read<AddDonationProvider>()
+                                  .onAddDonation(context);
                             },
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,

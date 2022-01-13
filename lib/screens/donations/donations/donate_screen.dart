@@ -3,6 +3,7 @@ import 'package:givelivly_beta/Screens/donations/donations/donate_provider.dart'
 import 'package:givelivly_beta/Screens/donations/donation_requests/donation_request_screen.dart';
 
 import 'package:givelivly_beta/config/packages.dart';
+import 'package:provider/provider.dart';
 
 import '../../../customs/custom_donation_widget.dart';
 
@@ -52,7 +53,7 @@ class _DonateScreenState extends State<DonateScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>  DonationRequestScreen(),
+                  builder: (context) => DonationRequestScreen(),
                 ),
               );
             },
@@ -145,47 +146,52 @@ class _DonateScreenState extends State<DonateScreen> {
               const SizedBox(
                 height: 20,
               ),
-              StreamBuilder(
-                stream: context.read<DonateProvider>().donation,
-                builder:
-                    (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                  if (context.read<DonateProvider>().donation == null) {
-                    return const Center(
-                      child: Text('No Donations Found'),
-                    );
-                  }
-                  QuerySnapshot<Map<String, dynamic>> _data;
-                  print('---${snapshot.data}---');
-                  if (snapshot.hasData) {
-                    _data =
-                        snapshot.data as QuerySnapshot<Map<String, dynamic>>;
-                   // setState(() {});
-                    print("--------${_data.docs.length}");
-                    return Expanded(
-                      child: ListView.builder(
-                          itemCount: _data.docs.length,
-                          itemBuilder: (context, index) {
-                            var _ds = _data.docs[index].data();
+              Consumer<DonateProvider>(builder: (_, context, __) {
+                return StreamBuilder(
+                  stream: context.donation,
+                  builder:
+                      (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                    if (context.read<DonateProvider>().donation == null) {
+                      return const Center(
+                        child: Text('No Donations Found'),
+                      );
+                    }
+                    QuerySnapshot<Map<String, dynamic>> _data;
+                    print('---${snapshot.data}---');
+                    if (snapshot.hasData) {
+                      _data =
+                          snapshot.data as QuerySnapshot<Map<String, dynamic>>;
+                      // setState(() {});
+                      print("--------${_data.docs.length}");
+                      return Expanded(
+                        child: ListView.builder(
+                            itemCount: _data.docs.length,
+                            itemBuilder: (context, index) {
+                              var _ds = _data.docs[index].data();
 
-                            return CustomDonationWidget(
+                              return CustomDonationWidget(
                                 foodItem: 'Daal Khichdi',
-                                donorName:_ds['fullName'],
+                                donorName: _ds['fullName'],
                                 address: _ds['address'],
                                 number: '9988776655',
                                 imageUrl: 'assets/Drawables/Biryani.jpg',
-                                request: context.read<DonateProvider>().isRequested
-                                    ? 'Request'
-                                    : 'Requested');
-
-                          }),
-                    );
-                  } else {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                },
-              )
+                                request: (_ds['isRequested'] ?? false)
+                                    ? 'requested'
+                                    : 'request',
+                                onRequested: () {
+                                  context.read<DonateProvider>().onRequest();
+                                },
+                              );
+                            }),
+                      );
+                    } else {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  },
+                );
+              })
             ],
           ),
         ),

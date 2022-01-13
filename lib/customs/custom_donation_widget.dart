@@ -8,6 +8,7 @@ class CustomDonationWidget extends StatelessWidget {
   final String number;
   final String imageUrl;
   final String request;
+  final VoidCallback? onRequested;
 
   const CustomDonationWidget(
       {Key? key,
@@ -16,7 +17,7 @@ class CustomDonationWidget extends StatelessWidget {
       required this.address,
       required this.number,
       required this.imageUrl,
-      required this.request})
+      required this.request, this.onRequested})
       : super(key: key);
 
   @override
@@ -113,15 +114,18 @@ class CustomDonationWidget extends StatelessWidget {
                       backgroundColor: MaterialStateProperty.all(
                           ColorsDesign.darkBluishColor),
                     ),
-                    child: Container(
-                      margin: const EdgeInsets.only(
-                        top: 7,
-                        bottom: 7,
-                      ),
-                      child:  Text(
-                        request,
-                        style: const TextStyle(
-                            color: ColorsDesign.lightColor, fontSize: 18),
+                    child: InkWell(
+                      onTap: onRequested ?? (){},
+                      child: Container(
+                        margin: const EdgeInsets.only(
+                          top: 7,
+                          bottom: 7,
+                        ),
+                        child:  Text(
+                          request,
+                          style: const TextStyle(
+                              color: ColorsDesign.lightColor, fontSize: 18),
+                        ),
                       ),
                     ),
                     onPressed: () {
@@ -140,7 +144,5 @@ class CustomDonationWidget extends StatelessWidget {
         ));
   }
 
-  addRequest(){
 
-  }
 }

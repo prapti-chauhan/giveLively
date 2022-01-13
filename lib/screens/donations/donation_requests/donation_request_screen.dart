@@ -1,9 +1,10 @@
+import 'package:givelivly_beta/Screens/donations/donation_requests/donation_request_provider.dart';
 import 'package:givelivly_beta/config/packages.dart';
+import 'package:givelivly_beta/customs/custom_request_widget.dart';
+import 'package:provider/provider.dart';
 
 class DonationRequestScreen extends StatefulWidget {
-   DonationRequestScreen({Key? key}) : super(key: key);
-
-  List requests = [];
+  const DonationRequestScreen({Key? key}) : super(key: key);
 
   @override
   _DonationRequestScreenState createState() => _DonationRequestScreenState();
@@ -208,133 +209,41 @@ class _DonationRequestScreenState extends State<DonationRequestScreen> {
                         ),
                       ),
                       //volunteers
-                      ListView.builder(
-                        itemCount: ,
-                          itemBuilder: (context,index){}),
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Card(
-                          elevation: 6,
-                          margin: const EdgeInsets.all(0),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Container(
-                            height: 50,
-                            width: size.width,
-                            decoration: BoxDecoration(
-                              color: ColorsDesign.darkGreenCreamColor,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Stack(children: const [
-                              Positioned(
-                                top: 20,
-                                left: 20,
-                                child: Text(
-                                  'Dilip Joshi',
-                                  style: TextStyle(
-                                      fontSize: 22,
-                                      color: ColorsDesign.darkBluishColor,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ]),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Card(
-                          elevation: 6,
-                          margin: const EdgeInsets.all(0),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Container(
-                            height: 50,
-                            width: size.width,
-                            decoration: BoxDecoration(
-                              color: ColorsDesign.darkGreenCreamColor,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Stack(children: const [
-                              Positioned(
-                                top: 20,
-                                left: 20,
-                                child: Text(
-                                  'Dilip Joshi',
-                                  style: TextStyle(
-                                      fontSize: 22,
-                                      color: ColorsDesign.darkBluishColor,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ]),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Card(
-                          elevation: 6,
-                          margin: const EdgeInsets.all(0),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Container(
-                            height: 50,
-                            width: size.width,
-                            decoration: BoxDecoration(
-                              color: ColorsDesign.darkGreenCreamColor,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Stack(children: const [
-                              Positioned(
-                                top: 20,
-                                left: 20,
-                                child: Text(
-                                  'Dilip Joshi',
-                                  style: TextStyle(
-                                      fontSize: 22,
-                                      color: ColorsDesign.darkBluishColor,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ]),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Card(
-                          elevation: 6,
-                          margin: const EdgeInsets.all(0),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Container(
-                            height: 50,
-                            width: size.width,
-                            decoration: BoxDecoration(
-                              color: ColorsDesign.darkGreenCreamColor,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Stack(children: const [
-                              Positioned(
-                                top: 20,
-                                left: 20,
-                                child: Text(
-                                  'Dilip Joshi',
-                                  style: TextStyle(
-                                      fontSize: 22,
-                                      color: ColorsDesign.darkBluishColor,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                            ]),
-                          ),
-                        ),
-                      ),
+                      Consumer<DonationRequestScreenProvider>(
+                          builder: (_, context, __) {
+                        return StreamBuilder(
+                          stream: context.requests,
+                          builder: (context, snapshot) {
+                            if (context
+                                    .read<DonationRequestScreenProvider>()
+                                    .requests ==
+                                null) {
+                              return const Center(
+                                child: Text('No Donations Found'),
+                              );
+                            }
+                            QuerySnapshot<Map<String, dynamic>> _data;
+                            print('---${snapshot.data}---');
+                            if (snapshot.hasData) {
+                              _data = snapshot.data
+                                  as QuerySnapshot<Map<String, dynamic>>;
+                              print("--------${_data.docs.length}");
+                              return Expanded(
+                                child: ListView.builder(
+                                    itemCount: _data.docs.length,
+                                    itemBuilder: (context, index) {
+                                      // var _ds = _data.docs[index].data();
+                                      return const CustomRequestWidget();
+                                    }),
+                              );
+                            } else {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }
+                          },
+                        );
+                      })
                     ],
                   ),
                 ),

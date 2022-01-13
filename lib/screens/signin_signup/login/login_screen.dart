@@ -144,7 +144,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: size.height * 0.03,
+                      height: size.height * 0.1,
                     ),
                     InkWell(
                       onTap: () {
@@ -188,13 +188,13 @@ class LoginScreen extends StatelessWidget {
                         SizedBox(
                       height: size.height * 0.01,
                     ),
-                    Column(
+                    Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
                           "Don't Have Account ?",
                           style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 22,
                               color: ColorsDesign.darkBluishColor),
                         ),
                             SizedBox(
@@ -218,49 +218,6 @@ class LoginScreen extends StatelessWidget {
                               color: ColorsDesign.darkBluishColor,
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          height: size.height * 0.01,
-                        ),
-                        ElevatedButton(
-                          style: ButtonStyle(
-                            elevation: MaterialStateProperty.all(3.0),
-                            backgroundColor: MaterialStateProperty.all(
-                                ColorsDesign.creamColor),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text(
-                                "Donate",
-                                style: TextStyle(
-                                    color: ColorsDesign.darkBluishColor,
-                                    fontSize: 24),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Ink(
-                                height: 30,
-                                width: 30,
-                                decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: ColorsDesign.darkBluishColor),
-                                child: const Icon(
-                                  Icons.arrow_forward,
-                                  color: ColorsDesign.creamColor,
-                                ),
-                              ),
-                            ],
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const DonateScreen(),
-                              ),
-                            );
-                          },
                         ),
                       ],
                     )

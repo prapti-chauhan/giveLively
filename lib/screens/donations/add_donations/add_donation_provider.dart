@@ -7,15 +7,15 @@ class AddDonationProvider extends ChangeNotifier {
   TextEditingController addAddressCtrl = TextEditingController();
 
   onAddDonation(BuildContext context) {
-
     if (formStateKeyDonation.currentState!.validate()) {
       Map<String, dynamic> donorInfoMap = {
         "email": addEmailCtrl.text,
         "fullName": addFullNameCtrl.text,
-        "address": addAddressCtrl.text
+        "address": addAddressCtrl.text,
+        'isRequested': false,
       };
 
-  /*    Prefs().saveDonorId = user!.user!.uid;
+      /*    Prefs().saveDonorId = user!.user!.uid;
       Prefs().saveDonorName = addFullNameCtrl.text;
       Prefs().saveAddress = addAddressCtrl.text;*/
 

@@ -17,58 +17,31 @@ class AddDonateScreen extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(
-                  height: size.height * 0.45,
+                  height: size.height * 0.3,
                   child: Stack(
                     children: [
                       Positioned(
-                        top: size.height * 0,
-                        right: size.width * 0,
-                        child: Image.asset("assets/Drawables/Ellipse_26.png"),
-                      ),
-                      Positioned(
-                        top: 0,
-                        left: 0,
-                        child: Image.asset(
-                          'assets/Drawables/Subtract.png',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Positioned(
-                        top: size.height * 0.2,
-                        left: size.width * 0.12,
+                        top: size.height * 0.1,
+                        left: size.width * 0.07,
                         child: Text(
                           "Enter Details!",
                           style: TextStyle(
                             fontSize: 36,
                             fontWeight: FontWeight.bold,
                             fontFamily: GoogleFonts.amiri().fontFamily,
-                            color: ColorsDesign.lightColor,
-                            shadows: const [
-                              Shadow(
-                                blurRadius: 10,
-                                color: ColorsDesign.darkColor,
-                                offset: Offset(3, 4),
-                              ),
-                            ],
+                            color: ColorsDesign.darkBluishColor,
                           ),
                         ),
                       ),
                       Positioned(
-                        top: size.height * 0.13,
-                        left: size.width * 0.1,
+                        top: size.height * 0.03,
+                        left: size.width * 0.05,
                         child: Text(
                           "To Donate",
                           style: TextStyle(
                             fontSize: 48,
                             fontFamily: GoogleFonts.amiri().fontFamily,
-                            color: ColorsDesign.lightColor,
-                            shadows: const [
-                              Shadow(
-                                blurRadius: 10,
-                                color: ColorsDesign.darkColor,
-                                offset: Offset(3, 3),
-                              ),
-                            ],
+                            color: ColorsDesign.darkBluishColor,
                           ),
                         ),
                       ),
@@ -87,6 +60,40 @@ class AddDonateScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Row(
+                            children: [
+                              InkWell(
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    const Text(
+                                      "Item Picture",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        color: ColorsDesign.darkBluishColor,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: size.width * 0.05,
+                                    ),
+                                    Container(
+                                      height: 40,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                        color: ColorsDesign.darkBluishColor,
+                                        borderRadius: BorderRadius.circular(50),
+                                      ),
+                                      child: const Icon(
+                                        Icons.camera_alt_outlined,
+                                        size: 20,
+                                        color: ColorsDesign.lightColor,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                           TextFormField(
                             controller: context
                                 .read<AddDonationProvider>()
@@ -99,7 +106,18 @@ class AddDonateScreen extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                                 color: ColorsDesign.darkBluishColor,
                               ),
-
+                              enabledBorder: const UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  width: 3.0,
+                                  color: ColorsDesign.darkBluishColor,
+                                ),
+                              ),
+                              focusedBorder: const UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  width: 3.0,
+                                  color: ColorsDesign.darkBluishColor,
+                                ),
+                              ),
                             ),
                           ),
                           TextFormField(
@@ -107,7 +125,7 @@ class AddDonateScreen extends StatelessWidget {
                                 .read<AddDonationProvider>()
                                 .addEmailCtrl,
                             decoration: InputDecoration(
-                              hintText: "Item name",
+                              hintText: "Item Type",
                               labelStyle: TextStyle(
                                 fontSize: 18,
                                 fontFamily: GoogleFonts.amiri().fontFamily,
@@ -187,7 +205,7 @@ class AddDonateScreen extends StatelessWidget {
                                 .read<AddDonationProvider>()
                                 .addAddressCtrl,
                             decoration: InputDecoration(
-                              hintText: "Address",
+                              hintText: "Phone No.",
                               labelStyle: TextStyle(
                                 fontSize: 18,
                                 fontFamily: GoogleFonts.amiri().fontFamily,

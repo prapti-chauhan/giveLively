@@ -85,7 +85,8 @@ class LoginScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TextFormField(
-                      controller: context.read<LoginProvider>().loginEmailController,
+                      controller:
+                          context.read<LoginProvider>().loginEmailController,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "This field can't be empty";
@@ -114,7 +115,8 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     TextFormField(
-                      controller: context.read<LoginProvider>().loginPasswordController,
+                      controller:
+                          context.read<LoginProvider>().loginPasswordController,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "This field can't be empty";
@@ -185,7 +187,7 @@ class LoginScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                        SizedBox(
+                    SizedBox(
                       height: size.height * 0.01,
                     ),
                     Row(
@@ -197,7 +199,7 @@ class LoginScreen extends StatelessWidget {
                               fontSize: 22,
                               color: ColorsDesign.darkBluishColor),
                         ),
-                            SizedBox(
+                        SizedBox(
                           height: size.height * 0.01,
                           width: size.width * 0.02,
                         ),

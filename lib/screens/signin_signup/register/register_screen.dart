@@ -63,15 +63,10 @@ class RegisterScreen extends StatelessWidget {
             ),
             Stack(
               children: [
-                Positioned(
-                    child: Image.asset(
-                  'assets/Drawables/Ellipse_27.png',
-                  height: 312.5,
-                )),
                 SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 0, horizontal: 30),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 0, horizontal: 30),
                     child: Form(
                       key: context.read<RegisterProvider>().formStateKey,
                       child: Column(
@@ -164,8 +159,7 @@ class RegisterScreen extends StatelessWidget {
                                           style: TextStyle(
                                             fontSize: 24,
                                             fontWeight: FontWeight.bold,
-                                            color:
-                                                ColorsDesign.darkBluishColor,
+                                            color: ColorsDesign.darkBluishColor,
                                           ),
                                         ),
                                         SizedBox(
@@ -179,8 +173,8 @@ class RegisterScreen extends StatelessWidget {
                                             height: 40,
                                             width: 40,
                                             decoration: BoxDecoration(
-                                              color: ColorsDesign
-                                                  .darkBluishColor,
+                                              color:
+                                                  ColorsDesign.darkBluishColor,
                                               borderRadius:
                                                   BorderRadius.circular(50),
                                             ),

@@ -3,6 +3,7 @@ import 'package:givelivly_beta/Screens/donations/donations/donate_provider.dart'
 import 'package:givelivly_beta/Screens/donations/donation_requests/donation_request_screen.dart';
 
 import 'package:givelivly_beta/config/packages.dart';
+import 'package:givelivly_beta/screens/notification/notification.dart';
 import 'package:provider/provider.dart';
 
 import '../../../customs/custom_donation_widget.dart';
@@ -24,7 +25,7 @@ class _DonateScreenState extends State<DonateScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: BottomAppBar(
@@ -66,8 +67,10 @@ class _DonateScreenState extends State<DonateScreen> {
                   color: ColorsDesign.darkBluishColor),
               tooltip: 'Show Snackbar',
               onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('This is a snackbar')));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => NotificationScreen()));
               },
             ),
           ],
@@ -92,7 +95,7 @@ class _DonateScreenState extends State<DonateScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                width: 380,
+                width: size.width,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     elevation: 15,

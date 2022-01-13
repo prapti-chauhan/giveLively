@@ -67,7 +67,7 @@ class _DonationRequestScreenState extends State<DonationRequestScreen> {
           ),
           backgroundColor: ColorsDesign.lightColor,
         ),
-        drawer: const NewCustomDrawer(),
+        drawer: NewCustomDrawer(),
         body: Container(
           color: ColorsDesign.lightColor,
           height: size.height,

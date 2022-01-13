@@ -3,38 +3,38 @@ import 'package:givelivly_beta/config/packages.dart';
 class LoginProvider extends ChangeNotifier {
   final TextEditingController loginPasswordController = TextEditingController();
   final TextEditingController loginEmailController = TextEditingController();
-  final GlobalKey<FormState> loginKey = GlobalKey<FormState>();
+
   final _auth = FirebaseAuth.instance;
 
   onSignIn(BuildContext context) async {
-    if (loginKey.currentState!.validate()) {
-      late UserCredential user;
-      try {
-        print('--------------trying----------------');
-        user = await _auth.signInWithEmailAndPassword(
-            email: loginEmailController.text,
-            password: loginPasswordController.text);
+    // if (loginKey?.currentState?.validate() ?? true) {
+    late UserCredential user;
+    try {
+      print('--------------trying----------------');
+      user = await _auth.signInWithEmailAndPassword(
+          email: loginEmailController.text,
+          password: loginPasswordController.text);
 
-        Prefs().saveUserEmail = user.user!.email!;
-        // print('${user.user!.email}');
-        print('--${Prefs().getUserEmail}--');
-        Prefs().saveUserId = user.user!.uid;
-        Prefs().saveDonorName = user.user!.email!.replaceAll("@gmail.com", "");
+      Prefs().saveUserEmail = user.user!.email!;
+      // print('${user.user!.email}');
+      print('--${Prefs().getUserEmail}--');
+      Prefs().saveUserId = user.user!.uid;
+      Prefs().saveDonorName = user.user!.email!.replaceAll("@gmail.com", "");
 
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const HomeScreen(),
-          ),
-        );
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const HomeScreen(),
+        ),
+      );
 
-        loginPasswordController.clear();
-        loginEmailController.clear();
+      loginPasswordController.clear();
+      loginEmailController.clear();
 
-        notifyListeners();
-      } catch (signInError) {
-        print('sign in error $signInError');
-        /*
+      notifyListeners();
+    } catch (signInError) {
+      print('sign in error $signInError');
+      /*
         print("----------------error---------------");
         if (signInError.toString() ==
                 '[firebase_auth/wrong-password] The password is invalid or the user does not have a password.' ||
@@ -65,8 +65,9 @@ class LoginProvider extends ChangeNotifier {
           email = '';
           password = '';
         }*/
-      }
     }
+    // }
+    print('-----------------end-----------------');
     notifyListeners();
   }
 }

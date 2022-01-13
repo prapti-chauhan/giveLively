@@ -18,7 +18,6 @@ void main() {
         Provider<LoginProvider>(create: (_) => LoginProvider()),
         Provider<AddDonationProvider>(create: (_) => AddDonationProvider()),
         Provider<DonateProvider>(create: (_) => DonateProvider()),
-
       ],
       child: const MaterialApp(
         home: GiveLivly(),
@@ -34,7 +33,6 @@ class GiveLivly extends StatelessWidget {
     return MaterialApp(
       title: 'GiveLivly',
       debugShowCheckedModeBanner: false,
-
       initialRoute: Routes.welcomeRoute,
       theme: ThemeData(
           textTheme: GoogleFonts.amiriTextTheme(
@@ -43,7 +41,7 @@ class GiveLivly extends StatelessWidget {
       routes: {
         Routes.welcomeRoute: (context) => const WelcomeScreen(),
         Routes.homeRoute: (context) => const HomeScreen(),
-        Routes.loginRoute: (context) => const LoginScreen(),
+        Routes.loginRoute: (context) => LoginScreen(),
       },
     );
   }

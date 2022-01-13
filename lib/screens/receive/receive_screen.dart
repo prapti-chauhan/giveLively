@@ -1,6 +1,5 @@
 import 'package:givelivly_beta/config/packages.dart';
 
-
 class ReceiveScreen extends StatefulWidget {
   const ReceiveScreen({Key? key}) : super(key: key);
 
@@ -73,7 +72,7 @@ class _ReceiveScreenState extends State<ReceiveScreen> {
           ),
           backgroundColor: ColorsDesign.lightColor,
         ),
-        drawer: const NewCustomDrawer(),
+        drawer: NewCustomDrawer(),
         body: Container(
           color: ColorsDesign.lightColor,
           height: size.height,
@@ -627,4 +626,3 @@ class _ReceiveScreenState extends State<ReceiveScreen> {
     );
   }
 }
-

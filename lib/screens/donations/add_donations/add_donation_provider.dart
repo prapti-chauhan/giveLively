@@ -9,6 +9,8 @@ class AddDonationProvider extends ChangeNotifier {
   onAddDonation(BuildContext context) {
     if (formStateKeyDonation.currentState!.validate()) {
       Map<String, dynamic> donorInfoMap = {
+        "itemName": addFullNameCtrl.text,
+        "itemType": addFullNameCtrl.text,
         "email": addEmailCtrl.text,
         "fullName": addFullNameCtrl.text,
         "address": addAddressCtrl.text,

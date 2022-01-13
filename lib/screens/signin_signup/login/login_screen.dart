@@ -4,8 +4,15 @@ import 'package:givelivly_beta/Screens/donations/donations/donate_screen.dart';
 import 'package:givelivly_beta/Screens/signin_signup/login/login_provider.dart';
 import 'package:givelivly_beta/config/packages.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  GlobalKey<FormState> loginKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -80,150 +87,151 @@ class LoginScreen extends StatelessWidget {
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextFormField(
-                      controller:
-                          context.read<LoginProvider>().loginEmailController,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "This field can't be empty";
-                        }
-                      },
-                      decoration: InputDecoration(
-                        labelText: "Email",
-                        labelStyle: TextStyle(
-                          fontSize: 24,
-                          fontFamily: GoogleFonts.amiri().fontFamily,
-                          fontWeight: FontWeight.bold,
-                          color: ColorsDesign.darkBluishColor,
-                        ),
-                        enabledBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 3.0,
+                child: Form(
+                  key: loginKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextFormField(
+                        controller:
+                            context.read<LoginProvider>().loginEmailController,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "This field can't be empty";
+                          }
+                        },
+                        decoration: InputDecoration(
+                          labelText: "Email",
+                          labelStyle: TextStyle(
+                            fontSize: 24,
+                            fontFamily: GoogleFonts.amiri().fontFamily,
+                            fontWeight: FontWeight.bold,
                             color: ColorsDesign.darkBluishColor,
                           ),
-                        ),
-                        focusedBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 3.0,
-                            color: ColorsDesign.darkBluishColor,
+                          enabledBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              width: 3.0,
+                              color: ColorsDesign.darkBluishColor,
+                            ),
+                          ),
+                          focusedBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              width: 3.0,
+                              color: ColorsDesign.darkBluishColor,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    TextFormField(
-                      controller:
-                          context.read<LoginProvider>().loginPasswordController,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "This field can't be empty";
-                        }
-                      },
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        labelText: "Password",
-                        labelStyle: TextStyle(
-                          fontSize: 24,
-                          fontFamily: GoogleFonts.amiri().fontFamily,
-                          fontWeight: FontWeight.bold,
-                          color: ColorsDesign.darkBluishColor,
-                        ),
-                        enabledBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 3.0,
+                      TextFormField(
+                        controller: context
+                            .read<LoginProvider>()
+                            .loginPasswordController,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "This field can't be empty";
+                          }
+                        },
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          labelText: "Password",
+                          labelStyle: TextStyle(
+                            fontSize: 24,
+                            fontFamily: GoogleFonts.amiri().fontFamily,
+                            fontWeight: FontWeight.bold,
                             color: ColorsDesign.darkBluishColor,
                           ),
-                        ),
-                        focusedBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 3.0,
-                            color: ColorsDesign.darkBluishColor,
+                          enabledBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              width: 3.0,
+                              color: ColorsDesign.darkBluishColor,
+                            ),
+                          ),
+                          focusedBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              width: 3.0,
+                              color: ColorsDesign.darkBluishColor,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: size.height * 0.1,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const HomeScreen(),
-                          ),
-                        );
-                      },
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                      SizedBox(
+                        height: size.height * 0.1,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          if (loginKey.currentState!.validate()) {
+                            context.read<LoginProvider>().onSignIn(context);
+                          }
+                        },
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const Text(
+                              "Sign In",
+                              style: TextStyle(
+                                fontSize: 33,
+                                fontWeight: FontWeight.bold,
+                                color: ColorsDesign.darkBluishColor,
+                              ),
+                            ),
+                            SizedBox(
+                              width: size.width * 0.05,
+                            ),
+                            Container(
+                              height: 35,
+                              width: 35,
+                              decoration: BoxDecoration(
+                                color: ColorsDesign.darkBluishColor,
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: const Icon(
+                                Icons.arrow_forward,
+                                size: 35,
+                                color: ColorsDesign.lightColor,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: size.height * 0.01,
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(
-                            "Sign In",
+                            "Don't Have Account ?",
                             style: TextStyle(
-                              fontSize: 33,
-                              fontWeight: FontWeight.bold,
-                              color: ColorsDesign.darkBluishColor,
-                            ),
+                                fontSize: 22,
+                                color: ColorsDesign.darkBluishColor),
                           ),
                           SizedBox(
-                            width: size.width * 0.05,
+                            height: size.height * 0.01,
+                            width: size.width * 0.02,
                           ),
-                          Container(
-                            height: 35,
-                            width: 35,
-                            decoration: BoxDecoration(
-                              color: ColorsDesign.darkBluishColor,
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            child: const Icon(
-                              Icons.arrow_forward,
-                              size: 35,
-                              color: ColorsDesign.lightColor,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: size.height * 0.01,
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Don't Have Account ?",
-                          style: TextStyle(
-                              fontSize: 22,
-                              color: ColorsDesign.darkBluishColor),
-                        ),
-                        SizedBox(
-                          height: size.height * 0.01,
-                          width: size.width * 0.02,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const RegisterScreen(),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const RegisterScreen(),
+                                ),
+                              );
+                            },
+                            child: const Text(
+                              "Sign Up",
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: ColorsDesign.darkBluishColor,
                               ),
-                            );
-                          },
-                          child: const Text(
-                            "Sign Up",
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: ColorsDesign.darkBluishColor,
                             ),
                           ),
-                        ),
-                      ],
-                    )
-                  ],
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             )

@@ -87,7 +87,7 @@ class _DonateScreenState extends State<DonateScreen> {
           ),
           backgroundColor: ColorsDesign.lightColor,
         ),
-        drawer: const NewCustomDrawer(),
+        drawer: NewCustomDrawer(),
         body: Container(
           color: ColorsDesign.lightColor,
           // height: 1000,

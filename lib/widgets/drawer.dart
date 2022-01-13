@@ -2,11 +2,17 @@
 
 import 'package:givelivly_beta/config/packages.dart';
 
-class NewCustomDrawer extends StatelessWidget {
-  const NewCustomDrawer({Key? key}) : super(key: key);
+class NewCustomDrawer extends StatefulWidget {
+  NewCustomDrawer({Key? key}) : super(key: key);
+
+  @override
+  State<NewCustomDrawer> createState() => _NewCustomDrawerState();
+}
+
+class _NewCustomDrawerState extends State<NewCustomDrawer> {
   final imageUrl =
       'https://images.unsplash.com/photo-1638061714820-ab12cbbeb87e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80';
-
+  var user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -45,15 +51,15 @@ class NewCustomDrawer extends StatelessWidget {
                 backgroundImage: NetworkImage(imageUrl),
               ),
             ),
-            accountName: const Text(
-              "Shyamlal Mathiyawala",
+            accountName: Text(
+              "${user?.email!.replaceAll('@gmail.com', '')}",
               style: TextStyle(
                 color: ColorsDesign.darkBluishColor,
                 fontSize: 24,
               ),
             ),
-            accountEmail: const Text(
-              "Shyamlal@email.com",
+            accountEmail: Text(
+              '${user?.email}',
               style: TextStyle(
                 color: ColorsDesign.darkBluishColor,
               ),

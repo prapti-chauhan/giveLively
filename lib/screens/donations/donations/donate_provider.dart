@@ -17,12 +17,10 @@ class DonateProvider extends ChangeNotifier {
     'isRequested': true,
   };
 
-
-  onRequest(){
+  onRequest() {
     FireStoreMethods().addRequest(requestInfoMap).then((value) {
       Map<String, dynamic> lastRequestInfoMap = {
         "isRequested": true,
-
       };
 
       FireStoreMethods().updateLastRequestSend(lastRequestInfoMap);

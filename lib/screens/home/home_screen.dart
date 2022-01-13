@@ -43,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         backgroundColor: ColorsDesign.lightColor,
       ),
+      drawer: NewCustomDrawer(),
       body: Container(
         height: size.height,
         width: size.width,

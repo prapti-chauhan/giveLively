@@ -5,6 +5,7 @@ class LoginProvider extends ChangeNotifier {
   final TextEditingController loginEmailController = TextEditingController();
 
   final _auth = FirebaseAuth.instance;
+  bool isLoggedIn = false;
 
   onSignIn(BuildContext context) async {
     // if (loginKey?.currentState?.validate() ?? true) {

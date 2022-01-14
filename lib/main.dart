@@ -4,6 +4,8 @@ import 'package:givelivly_beta/Screens/donations/donations/donate_provider.dart'
 import 'package:givelivly_beta/Screens/signin_signup/login/login_provider.dart';
 import 'package:givelivly_beta/Screens/signin_signup/register/register_provider.dart';
 import 'package:givelivly_beta/config/packages.dart';
+import 'package:givelivly_beta/screens/donations/donation_requests/donation_request_provider.dart';
+import 'package:givelivly_beta/screens/receive/receive_provider.dart';
 
 void main() {
   Provider.debugCheckInvalidValueType = null;
@@ -18,6 +20,9 @@ void main() {
         Provider<LoginProvider>(create: (_) => LoginProvider()),
         Provider<AddDonationProvider>(create: (_) => AddDonationProvider()),
         Provider<DonateProvider>(create: (_) => DonateProvider()),
+        Provider<ReceiveProvider>(create: (_) => ReceiveProvider()),
+        Provider<DonationRequestScreenProvider>(
+            create: (_) => DonationRequestScreenProvider()),
       ],
       child: const MaterialApp(
         home: GiveLivly(),

@@ -12,7 +12,34 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  void checkLogin() async {
+    final isLoggedIn = checkUser();
+    if (isLoggedIn) {
+      WidgetsBinding.instance?.addPostFrameCallback((_) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomeScreen(),
+          ),
+        );
+      });
+    }
+  }
+
+  bool checkUser() {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      return true;
+    }
+    return false;
+  }
+
   GlobalKey<FormState> loginKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+    checkLogin();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

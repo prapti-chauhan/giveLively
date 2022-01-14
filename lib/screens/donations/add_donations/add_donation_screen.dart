@@ -101,7 +101,7 @@ class AddDonateScreen extends StatelessWidget {
                             TextFormField(
                               controller: context
                                   .read<AddDonationProvider>()
-                                  .addEmailCtrl,
+                                  .addItemNameCtrl,
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return "This field can't be empty";
@@ -132,7 +132,7 @@ class AddDonateScreen extends StatelessWidget {
                             TextFormField(
                               controller: context
                                   .read<AddDonationProvider>()
-                                  .addEmailCtrl,
+                                  .addItemTypeCtrl,
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return "This field can't be empty";
@@ -227,7 +227,7 @@ class AddDonateScreen extends StatelessWidget {
                             TextFormField(
                               controller: context
                                   .read<AddDonationProvider>()
-                                  .addAddressCtrl,
+                                  .addPhoneNoCtrl,
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return "This field can't be empty";

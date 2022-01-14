@@ -196,7 +196,8 @@ class _NewCustomDrawerState extends State<NewCustomDrawer> {
                   ),
                 ),
                 onTap: () {
-                  Navigator.pop(context);
+                  Prefs().signOut();
+                  Navigator.of(context).popUntil((route) => route.isFirst);
                 },
               ),
             ],

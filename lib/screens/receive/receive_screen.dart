@@ -1,4 +1,7 @@
 import 'package:givelivly_beta/config/packages.dart';
+import 'package:givelivly_beta/customs/custom_donation_widget.dart';
+import 'package:givelivly_beta/screens/receive/receive_provider.dart';
+import 'package:provider/provider.dart';
 
 class ReceiveScreen extends StatefulWidget {
   const ReceiveScreen({Key? key}) : super(key: key);
@@ -10,6 +13,13 @@ class ReceiveScreen extends StatefulWidget {
 var scafoldKey = GlobalKey<ScaffoldState>();
 
 class _ReceiveScreenState extends State<ReceiveScreen> {
+  @override
+  void initState() {
+    context.read<ReceiveProvider>().init();
+    setState(() {});
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -79,546 +89,68 @@ class _ReceiveScreenState extends State<ReceiveScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Positioned(
-                top: 0,
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                    elevation: MaterialStateProperty.all(3.0),
-                    backgroundColor: MaterialStateProperty.all(
-                        ColorsDesign.darkGreenCreamColor),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        "All Donations",
-                        style: TextStyle(
-                            color: ColorsDesign.darkBluishColor, fontSize: 24),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Ink(
-                        height: 30,
-                        width: 30,
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: ColorsDesign.darkGreenCreamColor),
-                        child: const Icon(
-                          Icons.filter_alt_sharp,
-                          semanticLabel: 'Filter',
-                          color: ColorsDesign.darkBluishColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const HomeScreen(),
-                      ),
-                    );
-                  },
-                ),
+              SizedBox(
+                width: size.width,
+              ),
+              Center(
+                  child: Text(
+                "All Donations",
+                style: TextStyle(
+                    color: ColorsDesign.darkBluishColor, fontSize: 24),
+              )),
+              const SizedBox(
+                height: 20,
               ),
               const SizedBox(
                 height: 20,
               ),
-              SizedBox(
-                height: size.height * 0.70,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Card(
-                          elevation: 6,
-                          margin: const EdgeInsets.all(0),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Container(
-                            height: 200,
-                            width: size.width,
-                            decoration: BoxDecoration(
-                              color: ColorsDesign.creamColor,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Stack(
-                              children: [
-                                const Positioned(
-                                  top: 50,
-                                  left: 20,
-                                  child: Text(
-                                    'Dal Khichadi',
-                                    style: TextStyle(
-                                        fontSize: 24,
-                                        color: ColorsDesign.darkBluishColor,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                const Positioned(
-                                  top: 90,
-                                  left: 20,
-                                  child: Text(
-                                    'Shyamlal Kaniyawalla',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: ColorsDesign.darkBluishColor),
-                                  ),
-                                ),
-                                Positioned(
-                                  top: 120,
-                                  left: 20,
-                                  child: SizedBox(
-                                    width: size.width * 0.7,
-                                    child: const Text(
-                                      '201-202 Imagiera heights, Vesu, Surat',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          wordSpacing: 1,
-                                          color: ColorsDesign.darkBluishColor),
-                                    ),
-                                  ),
-                                ),
-                                const Positioned(
-                                  bottom: 10,
-                                  left: 20,
-                                  child: Text(
-                                    '9988776655',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: ColorsDesign.darkBluishColor),
-                                  ),
-                                ),
-                                Positioned(
-                                  top: 30,
-                                  right: 10,
-                                  child: SizedBox(
-                                    height: 90,
-                                    width: 90,
-                                    child: CircleAvatar(
-                                      backgroundImage: Image.asset(
-                                        'assets/Drawables/Biryani.jpg',
-                                        fit: BoxFit.fill,
-                                      ).image,
-                                    ),
-                                  ),
-                                ),
-                                Positioned(
-                                  bottom: 0,
-                                  right: 0,
-                                  child: ElevatedButton(
-                                    style: ButtonStyle(
-                                      elevation: MaterialStateProperty.all(3.0),
-                                      shape: MaterialStateProperty.all(
-                                        const RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.only(
-                                            bottomRight: Radius.circular(20),
-                                          ),
-                                        ),
-                                      ),
-                                      backgroundColor:
-                                          MaterialStateProperty.all(
-                                              ColorsDesign.darkBluishColor),
-                                    ),
-                                    child: Container(
-                                      margin: const EdgeInsets.only(
-                                        top: 7,
-                                        bottom: 7,
-                                      ),
-                                      child: const Text(
-                                        "Request",
-                                        style: TextStyle(
-                                            color: ColorsDesign.lightColor,
-                                            fontSize: 18),
-                                      ),
-                                    ),
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const HomeScreen(),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Card(
-                          elevation: 6,
-                          margin: const EdgeInsets.all(0),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Container(
-                            height: 200,
-                            width: size.width,
-                            decoration: BoxDecoration(
-                              color: ColorsDesign.creamColor,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Stack(
-                              children: [
-                                const Positioned(
-                                  top: 50,
-                                  left: 20,
-                                  child: Text(
-                                    'Dal Khichadi',
-                                    style: TextStyle(
-                                        fontSize: 24,
-                                        color: ColorsDesign.darkBluishColor,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                const Positioned(
-                                  top: 90,
-                                  left: 20,
-                                  child: Text(
-                                    'Shyamlal Kaniyawalla',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: ColorsDesign.darkBluishColor),
-                                  ),
-                                ),
-                                Positioned(
-                                  top: 120,
-                                  left: 20,
-                                  child: SizedBox(
-                                    width: size.width * 0.7,
-                                    child: const Text(
-                                      '201-202 Imagiera heights, Vesu, Surat',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          wordSpacing: 1,
-                                          color: ColorsDesign.darkBluishColor),
-                                    ),
-                                  ),
-                                ),
-                                const Positioned(
-                                  bottom: 10,
-                                  left: 20,
-                                  child: Text(
-                                    '9988776655',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: ColorsDesign.darkBluishColor),
-                                  ),
-                                ),
-                                Positioned(
-                                  top: 30,
-                                  right: 10,
-                                  child: SizedBox(
-                                    height: 90,
-                                    width: 90,
-                                    child: CircleAvatar(
-                                      backgroundImage: Image.asset(
-                                        'assets/Drawables/Biryani.jpg',
-                                        fit: BoxFit.fill,
-                                      ).image,
-                                    ),
-                                  ),
-                                ),
-                                Positioned(
-                                  bottom: 0,
-                                  right: 0,
-                                  child: ElevatedButton(
-                                    style: ButtonStyle(
-                                      elevation: MaterialStateProperty.all(3.0),
-                                      shape: MaterialStateProperty.all(
-                                        const RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.only(
-                                            bottomRight: Radius.circular(20),
-                                          ),
-                                        ),
-                                      ),
-                                      backgroundColor:
-                                          MaterialStateProperty.all(
-                                              ColorsDesign.darkBluishColor),
-                                    ),
-                                    child: Container(
-                                      margin: const EdgeInsets.only(
-                                        top: 7,
-                                        bottom: 7,
-                                      ),
-                                      child: const Text(
-                                        "Request",
-                                        style: TextStyle(
-                                            color: ColorsDesign.lightColor,
-                                            fontSize: 18),
-                                      ),
-                                    ),
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const HomeScreen(),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Card(
-                          elevation: 6,
-                          margin: const EdgeInsets.all(0),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Container(
-                            height: 200,
-                            width: size.width,
-                            decoration: BoxDecoration(
-                              color: ColorsDesign.creamColor,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Stack(
-                              children: [
-                                const Positioned(
-                                  top: 50,
-                                  left: 20,
-                                  child: Text(
-                                    'Dal Khichadi',
-                                    style: TextStyle(
-                                        fontSize: 24,
-                                        color: ColorsDesign.darkBluishColor,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                const Positioned(
-                                  top: 90,
-                                  left: 20,
-                                  child: Text(
-                                    'Shyamlal Kaniyawalla',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: ColorsDesign.darkBluishColor),
-                                  ),
-                                ),
-                                Positioned(
-                                  top: 120,
-                                  left: 20,
-                                  child: SizedBox(
-                                    width: size.width * 0.7,
-                                    child: const Text(
-                                      '201-202 Imagiera heights, Vesu, Surat',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          wordSpacing: 1,
-                                          color: ColorsDesign.darkBluishColor),
-                                    ),
-                                  ),
-                                ),
-                                const Positioned(
-                                  bottom: 10,
-                                  left: 20,
-                                  child: Text(
-                                    '9988776655',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: ColorsDesign.darkBluishColor),
-                                  ),
-                                ),
-                                Positioned(
-                                  top: 30,
-                                  right: 10,
-                                  child: SizedBox(
-                                    height: 90,
-                                    width: 90,
-                                    child: CircleAvatar(
-                                      backgroundImage: Image.asset(
-                                        'assets/Drawables/Biryani.jpg',
-                                        fit: BoxFit.fill,
-                                      ).image,
-                                    ),
-                                  ),
-                                ),
-                                Positioned(
-                                  bottom: 0,
-                                  right: 0,
-                                  child: ElevatedButton(
-                                    style: ButtonStyle(
-                                      elevation: MaterialStateProperty.all(3.0),
-                                      shape: MaterialStateProperty.all(
-                                        const RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.only(
-                                            bottomRight: Radius.circular(20),
-                                          ),
-                                        ),
-                                      ),
-                                      backgroundColor:
-                                          MaterialStateProperty.all(
-                                              ColorsDesign.darkBluishColor),
-                                    ),
-                                    child: Container(
-                                      margin: const EdgeInsets.only(
-                                        top: 7,
-                                        bottom: 7,
-                                      ),
-                                      child: const Text(
-                                        "Request",
-                                        style: TextStyle(
-                                            color: ColorsDesign.lightColor,
-                                            fontSize: 18),
-                                      ),
-                                    ),
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const HomeScreen(),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Card(
-                          elevation: 6,
-                          margin: const EdgeInsets.all(0),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Container(
-                            height: 200,
-                            width: size.width,
-                            decoration: BoxDecoration(
-                              color: ColorsDesign.creamColor,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Stack(
-                              children: [
-                                const Positioned(
-                                  top: 50,
-                                  left: 20,
-                                  child: Text(
-                                    'Dal Khichadi',
-                                    style: TextStyle(
-                                        fontSize: 24,
-                                        color: ColorsDesign.darkBluishColor,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                const Positioned(
-                                  top: 90,
-                                  left: 20,
-                                  child: Text(
-                                    'Shyamlal Kaniyawalla',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: ColorsDesign.darkBluishColor),
-                                  ),
-                                ),
-                                Positioned(
-                                  top: 120,
-                                  left: 20,
-                                  child: SizedBox(
-                                    width: size.width * 0.7,
-                                    child: const Text(
-                                      '201-202 Imagiera heights, Vesu, Surat',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          wordSpacing: 1,
-                                          color: ColorsDesign.darkBluishColor),
-                                    ),
-                                  ),
-                                ),
-                                const Positioned(
-                                  bottom: 10,
-                                  left: 20,
-                                  child: Text(
-                                    '9988776655',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: ColorsDesign.darkBluishColor),
-                                  ),
-                                ),
-                                Positioned(
-                                  top: 30,
-                                  right: 10,
-                                  child: SizedBox(
-                                    height: 90,
-                                    width: 90,
-                                    child: CircleAvatar(
-                                      backgroundImage: Image.asset(
-                                        'assets/Drawables/Biryani.jpg',
-                                        fit: BoxFit.fill,
-                                      ).image,
-                                    ),
-                                  ),
-                                ),
-                                Positioned(
-                                  bottom: 0,
-                                  right: 0,
-                                  child: ElevatedButton(
-                                    style: ButtonStyle(
-                                      elevation: MaterialStateProperty.all(3.0),
-                                      shape: MaterialStateProperty.all(
-                                        const RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.only(
-                                            bottomRight: Radius.circular(20),
-                                          ),
-                                        ),
-                                      ),
-                                      backgroundColor:
-                                          MaterialStateProperty.all(
-                                              ColorsDesign.darkBluishColor),
-                                    ),
-                                    child: Container(
-                                      margin: const EdgeInsets.only(
-                                        top: 7,
-                                        bottom: 7,
-                                      ),
-                                      child: const Text(
-                                        "Request",
-                                        style: TextStyle(
-                                            color: ColorsDesign.lightColor,
-                                            fontSize: 18),
-                                      ),
-                                    ),
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const HomeScreen(),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              )
+              Consumer<ReceiveProvider>(builder: (_, context, __) {
+                return StreamBuilder(
+                  stream: context.donation,
+                  builder:
+                      (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                    if (context.read<ReceiveProvider>().donation == null) {
+                      return const Center(
+                        child: Text('No Donations Found'),
+                      );
+                    }
+                    QuerySnapshot<Map<String, dynamic>> _data;
+                    print('---${snapshot.data}---');
+                    if (snapshot.hasData) {
+                      _data =
+                          snapshot.data as QuerySnapshot<Map<String, dynamic>>;
+                      // setState(() {});
+                      print("--------${_data.docs.length}");
+                      return Expanded(
+                        child: ListView.builder(
+                            itemCount: _data.docs.length,
+                            itemBuilder: (context, index) {
+                              var _ds = _data.docs[index].data();
+
+                              return CustomDonationWidget(
+                                foodItem: _ds['itemName'],
+                                foodType: _ds['itemType'],
+                                donorName: _ds['fullName'],
+                                address: _ds['address'],
+                                number: _ds['phoneNumber'],
+                                imageUrl: 'assets/Drawables/Biryani.jpg',
+                                request: (_ds['isRequested'] ?? false)
+                                    ? 'requested'
+                                    : 'request',
+                                onRequested: () {
+                                  context.read<ReceiveProvider>().onRequest();
+                                },
+                              );
+                            }),
+                      );
+                    } else {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  },
+                );
+              })
             ],
           ),
         ),

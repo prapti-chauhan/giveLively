@@ -15,6 +15,8 @@ class DonateScreen extends StatefulWidget {
   _DonateScreenState createState() => _DonateScreenState();
 }
 
+var scafoldKey = GlobalKey<ScaffoldState>();
+
 class _DonateScreenState extends State<DonateScreen> {
   @override
   void initState() {
@@ -28,6 +30,7 @@ class _DonateScreenState extends State<DonateScreen> {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
+        key: scafoldKey,
         bottomNavigationBar: BottomAppBar(
           child: ElevatedButton(
             style: ButtonStyle(
@@ -78,16 +81,12 @@ class _DonateScreenState extends State<DonateScreen> {
           leading: IconButton(
             icon: SvgPicture.asset('assets/Drawables/Toggle Button.svg'),
             onPressed: () {
-              context
-                  .read<DonateProvider>()
-                  .scaffoldKey
-                  .currentState!
-                  .openDrawer();
+              scafoldKey.currentState!.openDrawer();
             },
           ),
           backgroundColor: ColorsDesign.lightColor,
         ),
-        drawer: const NewCustomDrawer(),
+        drawer: NewCustomDrawer(),
         body: Container(
           color: ColorsDesign.lightColor,
           // height: 1000,
@@ -173,10 +172,11 @@ class _DonateScreenState extends State<DonateScreen> {
                               var _ds = _data.docs[index].data();
 
                               return CustomDonationWidget(
-                                foodItem: 'Daal Khichdi',
+                                foodItem: _ds['itemName'],
+                                foodType: _ds['itemType'],
                                 donorName: _ds['fullName'],
                                 address: _ds['address'],
-                                number: '9988776655',
+                                number: _ds['phoneNumber'],
                                 imageUrl: 'assets/Drawables/Biryani.jpg',
                                 request: (_ds['isRequested'] ?? false)
                                     ? 'requested'

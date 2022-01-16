@@ -17,7 +17,17 @@ class FireStoreMethods {
   }
 
   Future<Stream<QuerySnapshot>> getRequests() async {
-    return FirebaseFirestore.instance.collection("donor").snapshots();
+    return FirebaseFirestore.instance
+        .collection("donor")
+        .where('doneby', isEqualTo: FirebaseAuth.instance.currentUser!.email)
+        .snapshots();
+  }
+
+  Future<Stream<QuerySnapshot>> getRequests1() async {
+    return FirebaseFirestore.instance
+        .collection("donor")
+        .where('doneby', isNotEqualTo: FirebaseAuth.instance.currentUser!.email)
+        .snapshots();
   }
 
   Future addRequest(Map<String, dynamic> requestInfoMap) async {

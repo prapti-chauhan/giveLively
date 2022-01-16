@@ -1,6 +1,4 @@
-
 import 'package:givelivly_beta/config/packages.dart';
-
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({Key? key}) : super(key: key);

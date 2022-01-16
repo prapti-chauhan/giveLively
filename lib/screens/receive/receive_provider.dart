@@ -1,12 +1,12 @@
 import 'package:givelivly_beta/config/packages.dart';
 
-class DonateProvider extends ChangeNotifier {
+class ReceiveProvider extends ChangeNotifier {
   Stream? donation;
   var scaffoldKey = GlobalKey<ScaffoldState>();
   bool isRequested = true;
 
   init() {
-    FireStoreMethods().getRequests().then((value) {
+    FireStoreMethods().getRequests1().then((value) {
       donation = value;
       notifyListeners();
     });

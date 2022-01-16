@@ -22,6 +22,7 @@ class RegisterProvider extends ChangeNotifier {
         Prefs().saveUserId = user.user!.uid;
         Map<String, dynamic> userInfoMap = {
           "email": emailController.text,
+          "password": passwordController.text,
         };
 
         FireStoreMethods()
@@ -38,7 +39,7 @@ class RegisterProvider extends ChangeNotifier {
 
         notifyListeners();
       } catch (signUpError) {
-        print('sigh up error $signUpError');
+        print('sign up error $signUpError');
         showDialog(
             context: context,
             builder: (BuildContext context) {

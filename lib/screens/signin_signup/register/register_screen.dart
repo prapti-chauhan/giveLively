@@ -209,7 +209,7 @@ class RegisterScreen extends StatelessWidget {
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>
-                                                  const LoginScreen(),
+                                                  LoginScreen(),
                                             ),
                                           );
                                         },
@@ -218,7 +218,7 @@ class RegisterScreen extends StatelessWidget {
                                           style: TextStyle(
                                             fontSize: 24,
                                             fontWeight: FontWeight.bold,
-                                            color: ColorsDesign.lightColor,
+                                            color: ColorsDesign.darkBluishColor,
                                           ),
                                         ),
                                       ),

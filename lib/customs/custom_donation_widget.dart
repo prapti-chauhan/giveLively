@@ -3,6 +3,7 @@ import 'package:givelivly_beta/config/packages.dart';
 
 class CustomDonationWidget extends StatelessWidget {
   final String foodItem;
+  final String foodType;
   final String donorName;
   final String address;
   final String number;
@@ -17,14 +18,16 @@ class CustomDonationWidget extends StatelessWidget {
       required this.address,
       required this.number,
       required this.imageUrl,
-      required this.request, this.onRequested})
+      required this.request,
+      required this.foodType,
+      this.onRequested})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return  Padding(
+    return Padding(
         padding: const EdgeInsets.all(16.0),
         child: Card(
           elevation: 6,
@@ -41,6 +44,24 @@ class CustomDonationWidget extends StatelessWidget {
             ),
             child: Stack(
               children: [
+                Positioned(
+                  top: 50,
+                  right: 120,
+                  child: Container(
+                    child: Center(
+                      child: Text(
+                        foodType,
+                        style: TextStyle(color: ColorsDesign.lightColor),
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                      color: ColorsDesign.darkBluishColor,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    height: 30,
+                    width: 70,
+                  ),
+                ),
                 Positioned(
                   top: 50,
                   left: 20,
@@ -66,7 +87,7 @@ class CustomDonationWidget extends StatelessWidget {
                   left: 20,
                   child: SizedBox(
                     width: size.width * 0.7,
-                    child:  Text(
+                    child: Text(
                       address,
                       style: const TextStyle(
                           fontSize: 16,
@@ -115,13 +136,13 @@ class CustomDonationWidget extends StatelessWidget {
                           ColorsDesign.darkBluishColor),
                     ),
                     child: InkWell(
-                      onTap: onRequested ?? (){},
+                      onTap: onRequested ?? () {},
                       child: Container(
                         margin: const EdgeInsets.only(
                           top: 7,
                           bottom: 7,
                         ),
-                        child:  Text(
+                        child: Text(
                           request,
                           style: const TextStyle(
                               color: ColorsDesign.lightColor, fontSize: 18),
@@ -143,6 +164,4 @@ class CustomDonationWidget extends StatelessWidget {
           ),
         ));
   }
-
-
 }
